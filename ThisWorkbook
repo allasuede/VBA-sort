@@ -1,0 +1,7 @@
+Private Sub Workbook_Open()
+    ' Ensure that the Worksheet_Change event is enabled when the workbook is opened.
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("Sheet1") ' Change "Sheet1" to your sheet name
+    ws.Protect UserInterfaceOnly:=True
+    Application.EnableEvents = True
+End Sub
