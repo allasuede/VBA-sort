@@ -1,0 +1,21 @@
+' This macro sorts the table by values in column B whenever a new row is added.
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Dim KeyCell As Range
+    Dim TableRange As Range
+    Dim LastRow As Long
+
+    ' Specify the key cell to monitor for changes (e.g., column B)
+    Set KeyCell = Me.Cells(Target.Row, 2)
+
+    ' Check if the change occurred in column B
+    If Not Intersect(Target, Me.Columns(2)) Is Nothing Then
+        ' Find the last row with data in column B
+        LastRow = Me.Cells(Me.Rows.Count, 2).End(xlUp).Row
+        
+        ' Define the range of the table
+        Set TableRange = Me.Range("A1:B" & LastRow)
+        
+        ' Sort the table by values in column B
+        TableRange.Sort Key1:=Me.Range("B1"), Order1:=xlAscending, Header:=xlYes
+    End If
+End Sub
